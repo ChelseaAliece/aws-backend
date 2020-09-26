@@ -1,5 +1,4 @@
 const express = require('express');
-require('rootpath')();
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -24,7 +23,7 @@ const app = express();
 
 const users = require('./routes/users');
 
-const port = 3000;
+const port = 80;
 
 app.use(cors());
 
@@ -43,8 +42,7 @@ app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 })
 
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
-const server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
+app.listen(port, () => {
+    console.log('server started on port ' + port);
 });
 
